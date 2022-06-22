@@ -1,5 +1,19 @@
-let pieces = ["Beethoven - Symphony No. 5 in C Minor","mahler 5","mahler 2","chopin etude 4","chaconne","tchaik violin concerto","eine kleine"];
-let correct_name = "Beethoven - Symphony No. 5 in C Minor";
+var request = new XMLHttpRequest();  
+request.open("GET", 'classicle_data.csv', false);   
+request.send(null);  
+
+var csv_data = new Array();
+var jsonObject = request.responseText.split(/\r?\n|\r/);
+for (var i = 0; i < jsonObject.length; i++) {
+  csv_data.push(jsonObject[i].split(','));
+}
+
+let day = 1
+let pieces = [];
+for (let name of csv_data) {
+  pieces.push(name[0]);
+}
+let correct_name = csv_data[day][0];
 
 let guesses = 0;
 
