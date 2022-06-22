@@ -14,6 +14,7 @@ for (let name of csv_data) {
   pieces.push(name[0]);
 }
 let correct_name = csv_data[day][0];
+let link = csv_data[day][1];
 
 let guesses = 0;
 
@@ -82,6 +83,7 @@ function fading_border(guesses) {
 function win() {
   let overlay = document.getElementById('overlay');
   let title = document.getElementById('popup-title');
+  document.getElementById('spotify-frame').src = link;
   title.innerHTML = "You Win!";
   
   overlay.style.display = 'block';
