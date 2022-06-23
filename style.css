@@ -64,11 +64,15 @@ body {
 }
 
 input {
-  width: 300px;
+  width: 295px;
   height: 30px;
   border: 3px solid #22262d;
   font-size: 20px;
-  border-radius: 8px;
+  padding-left: 5px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
 }
 
 .custom-placeholder::placeholder {
