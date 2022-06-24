@@ -10,11 +10,13 @@ for (var i = 0; i < jsonObject.length; i++) {
 
 let day = 1
 let pieces = [];
-for (let name of csv_data) {
-  pieces.push(name[0]);
+for (var i = 1; i < csv_data.length; i++) {
+  pieces.push(csv_data[i][0]);
 }
+console.log(pieces);
 let correct_name = csv_data[day][0];
 let link = csv_data[day][1];
+console.log(link);
 
 let guesses = 0;
 
@@ -104,6 +106,7 @@ function win() {
 function lost() {
   let overlay = document.getElementById('overlay');
   let title = document.getElementById('popup-title');
+  document.getElementById('spotify-frame').src = link;
   title.innerHTML = "You Lose!";
   
   overlay.style.display = 'block';
