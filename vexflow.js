@@ -31,18 +31,40 @@ function draw_bar(bar,div,time_sig,key_sig,notas,first) {
 
   for (var i = 0; i < notas.length-1; i++) {
     note_arr.push(new StaveNote({keys: [notas[i][0]], duration: notas[i][1]}))
+
     if (notas[i].length > 2) {
       for (var j = 2; j < notas[i].length; j++) {
+
+        if (notas[i][j] == 'dotted') {
+          note_arr[i] = dotted(
+            new StaveNote({keys: [notas[i][0]], duration: notas[i][1]})
+          )
+        }
+        
         if (notas[i][j] == 'flat') {
           note_arr[i].addModifier(new Accidental('b'))
         } else if (notas[i][j] == 'sharp') {
           note_arr[i].addModifier(new Accidental('#'))
+        } else if (notas[i][j] == 'natural') {
+          note_arr[i].addModifier(new Accidental('n'))
         }
 
+        if (notas[i][j] == 'staccato') {
+          note_arr[i].addModifier(new Articulation('a.'))
+        }
+
+        if (notas[i][j] == 'accent') {
+          note_arr[i].addModifier(new Articulation('a>'))
+        }
+
+        if (notas[i][j] == 'marcato') {
+          note_arr[i].addModifier(new Articulation('a-'))
+        }
         
         if (notas[i][j] == 'fermata') {
           note_arr[i].addModifier(new Articulation('a@a').setPosition(ModifierPosition.ABOVE))
         }
+        
         if (notas[i][j].startsWith('tie')) {
           if (notas[i][j][3] == 'n') {
             ties.push(new StaveTie({
@@ -65,7 +87,6 @@ function draw_bar(bar,div,time_sig,key_sig,notas,first) {
 
           
         }
-        
       }
     }   
   }
@@ -94,16 +115,32 @@ function draw_bar(bar,div,time_sig,key_sig,notas,first) {
       t.setContext(context).draw();
   });
 
+  
 }
 
-draw_bar(1, document.getElementById('img1'), '2/4', 'Eb', [['b/4','8r'],['g/4','8'],['g/4','8'],['g/4','8'],true], true)
-draw_bar(2, document.getElementById('img2'), '2/4', 'Eb', [['e/4','2','fermata'], false])
-draw_bar(3, document.getElementById('img3'), '2/4', 'Eb', [['b/4','8r'],['f/4','8'],['f/4','8'],['f/4','8'],true], false)
-draw_bar(4, document.getElementById('img4'), '2/4', 'Eb', [['d/4','2','tie0-n'], false], false)
-draw_bar(5, document.getElementById('img5'), '2/4', 'Eb', [['d/4','2','fermata','tien-0'],false], false)
-draw_bar(6, document.getElementById('img6'), '2/4', 'Eb', [['b/4','8r'],['g/4','8'],['g/4','8'],['g/4','8'],true], false)
+function dotted(staveNote, noteIndex = -1) {
+    if (noteIndex < 0) {
+        Dot.buildAndAttach([staveNote], {
+            all: true,
+        });
+    } else {
+        Dot.buildAndAttach([staveNote], {
+            index: noteIndex,
+        });
+    }
+    return staveNote;
+}
+
+// draw_bar(1, document.getElementById('img1'), '2/4', 'Eb', [['b/4','8r'],['g/4','8'],['g/4','8'],['g/4','8'],true], true)
+// draw_bar(2, document.getElementById('img2'), '2/4', 'Eb', [['e/4','2','fermata'], false])
+// draw_bar(3, document.getElementById('img3'), '2/4', 'Eb', [['b/4','8r'],['f/4','8'],['f/4','8'],['f/4','8'],true], false)
+// draw_bar(4, document.getElementById('img4'), '2/4', 'Eb', [['d/4','2','tie0-n'], false], false)
+// draw_bar(5, document.getElementById('img5'), '2/4', 'Eb', [['d/4','2','fermata','tien-0'],false], false)
+// draw_bar(6, document.getElementById('img6'), '2/4', 'Eb', [['b/4','8r'],['g/4','8'],['g/4','8'],['g/4','8'],true], false)
 
 
-// why();
+for (var i = 0; i < 6; i++) {
+  draw_bar(i+1, document.getElementById('img' + (i+1).toString()), correct_data[2], correct_data[3], correct_data[i+4])
+}
 
 

@@ -1,23 +1,3 @@
-var request = new XMLHttpRequest();  
-request.open("GET", 'classicle_data.csv', false);   
-request.send(null);  
-
-var csv_data = new Array();
-var jsonObject = request.responseText.split(/\r?\n|\r/);
-for (var i = 0; i < jsonObject.length; i++) {
-  csv_data.push(jsonObject[i].split(','));
-}
-
-let day = 1
-let pieces = [];
-for (var i = 1; i < csv_data.length; i++) {
-  pieces.push(csv_data[i][0]);
-}
-console.log(pieces);
-let correct_name = csv_data[day][0];
-let link = csv_data[day][1];
-console.log(link);
-
 let guesses = 0;
 
 
@@ -121,7 +101,6 @@ function lost() {
 }
 
 close_btn.addEventListener('click', function handleClick() {
-  console.log("test");
   let divy = document.getElementById('overlay');
   divy.style.animation = 'fadeOutAnimation ease 0.5s';
   setTimeout(() => overlay.style.display = 'none', 500);
@@ -147,8 +126,7 @@ share_btn.addEventListener('click', function handleClick() {
       text += "⬜️";
     }
   }
-  text += "\n\n https://classicle.sfdcoderaz.repl.co"
-  console.log(text);
+  text += "\n\n https://classicle.sfdcoderaz.repl.co";
   navigator.clipboard.writeText(text)
   .then(() => {
   console.log("Text has been copied!")
