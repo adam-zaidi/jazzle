@@ -8,7 +8,7 @@ for (var i = 0; i < jsonObject.length; i++) {
   csv_data.push(jsonObject[i].split(','));
 }
 
-let day = 1;
+let day = 2;
 let pieces = [];
 for (var i = 1; i < csv_data.length; i++) {
   pieces.push(csv_data[i][0]);
