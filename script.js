@@ -6,7 +6,7 @@ let input = document.querySelector('input');
 let close_btn = document.getElementById("closebtn");
 let info_btn = document.getElementById("info-button-box");
 let share_btn = document.getElementById("share-button");
-let submit_btn = document.getElementById('submit-button')
+let submit_btn = document.getElementById('submit-button');
 
 input.addEventListener('keyup', (e) => {
     if(e.keyCode === 13) {
