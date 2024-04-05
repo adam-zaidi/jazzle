@@ -1,7 +1,9 @@
+@font-face { font-family: Realbook; src: url('fonts/realbook-webfont.ttf'); } 
+
 * {
   margin: 0px;
   padding: 0px;
-  font-family: 'Didact Gothic';
+  font-family: 'Realbook';
 }
 
 body {
