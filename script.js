@@ -14,7 +14,11 @@ let correct_name = pieces.sort()[order[jazzle_day]]
 
 for (var i = 0; i < 6; i++) {
   let img = document.getElementById("img"+(i+1).toString())
-  img.src = "by-hand/502 Blues/"+(i+1).toString()
+  let name = "A Child Is Born";
+  name_processed = name.replace(/ /g, "%20");
+  img.src = "https://storage.googleapis.com/jazzle-files/by-hand/"+name_processed+"/"+(i+1).toString()+".png"
+  console.log("https://storage.googleapis.com/jazzle-files/by-hand/"+name_processed+"/"+(i+1).toString()+".png")
+
 }
 
 let input = document.querySelector("input");
