@@ -113,7 +113,7 @@ function win() {
 function lost() {
   let overlay = document.getElementById("overlay");
   let title = document.getElementById("popup-title");
-  document.getElementById("spotify-frame").src = link;
+  // document.getElementById("spotify-frame").src = link;
   title.innerHTML = "You Lose!";
 
   overlay.style.display = "block";
