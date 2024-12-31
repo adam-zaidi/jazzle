@@ -6,7 +6,6 @@ const start_date = new Date("2025", "0", "1");
 const date = new Date();
 let jazzle_day = Math.round((date - start_date) / (1000 * 60 * 60 * 24))%order.length;
 
-// console.log(date);
 let piecess = pieces.sort()
 let correct_name = piecess[order[jazzle_day]];
 
@@ -20,7 +19,6 @@ for (var i = 0; i < 6; i++) {
     "/" +
     (i + 1).toString() +
     ".png";
-  console.log(img.src);
 }
 
 let input = document.querySelector("input");
